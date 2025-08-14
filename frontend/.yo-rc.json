@@ -1,0 +1,20 @@
+{
+  "generator-ui5-ts-app": {
+    "namespace": "buecherverwaltung.app",
+    "framework": "OpenUI5",
+    "frameworkVersion": "1.139.0",
+    "author": "Rahman Ertürk",
+    "tstypes": "@openui5/types",
+    "tstypesVersion": "1.139.0",
+    "appId": "buecherverwaltung.app",
+    "appURI": "buecherverwaltung/app",
+    "cdnDomain": "sdk.openui5.org",
+    "defaultTheme": "sap_horizon",
+    "gte1_98_0": true,
+    "gte1_104_0": true,
+    "gte1_115_0": true,
+    "gte1_120_0": true,
+    "lt1_124_0": false,
+    "setupCompleted": true
+  }
+}
