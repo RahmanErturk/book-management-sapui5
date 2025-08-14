@@ -12,18 +12,36 @@
 		title="{i18n>appTitle}"
 		id="page">
 		<content>
-			<IllustratedMessage
-				title="{i18n>appTitle}"
-				illustrationType="sapIllus-SuccessHighFive"
-				enableVerticalResponsiveness="true"
-				description="{i18n>appDescription}">
-				<additionalContent>
-					<Button
-						id="helloButton"
-						text="{formatter: 'formatter.formatValue', path: 'i18n>btnText'}"
-						press="sayHello" />
-				</additionalContent>
-			</IllustratedMessage>
+     <Table
+        id="booksTable"
+        items="{
+          path: 'booksModel>/books'
+        }">
+        
+        <headerToolbar>
+          <Toolbar>
+            <Title text="Bücherliste" level="H2"/>
+          </Toolbar>
+        </headerToolbar>
+
+        <columns>
+          <Column><Text text="Titel" /></Column>
+          <Column><Text text="Autor" /></Column>
+          <Column><Text text="Angelegt am" /></Column>
+          <Column><Text text="Angelegt von" /></Column>
+        </columns>
+
+        <items>
+          <ColumnListItem>
+            <cells>
+              <Text text="{booksModel>title}" />
+              <Text text="{booksModel>author}" />
+              <Text text="{booksModel>createdAt}" />
+              <Text text="{booksModel>createdBy}" />
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
 		</content>
 	</Page>
 

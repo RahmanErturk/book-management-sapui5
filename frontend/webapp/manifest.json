@@ -57,6 +57,9 @@
 					"fallbackLocale": "en",
 					"async": true
 				}
+			},
+			"booksModel": {
+				"type": "sap.ui.model.json.JSONModel"
 			}
 		},
 

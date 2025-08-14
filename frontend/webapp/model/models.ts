@@ -9,5 +9,13 @@ export default {
 		const oModel = new JSONModel(Device);
 		oModel.setDefaultBindingMode(BindingMode.OneWay);
 		return oModel;
+	},
+
+	createBooksModel: () => {
+		const oModel = new JSONModel({
+			books: [] // başta boş
+		});
+		oModel.setDefaultBindingMode(BindingMode.TwoWay);
+		return oModel;
 	}
 };
