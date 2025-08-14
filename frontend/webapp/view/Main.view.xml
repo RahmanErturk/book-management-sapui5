@@ -36,7 +36,7 @@
             <cells>
               <Text text="{booksModel>title}" />
               <Text text="{booksModel>author}" />
-              <Text text="{booksModel>createdAt}" />
+              <Text text="{path: 'booksModel>createdAt', formatter: 'formatter.formatDate'}" />
               <Text text="{booksModel>createdBy}" />
             </cells>
           </ColumnListItem>
