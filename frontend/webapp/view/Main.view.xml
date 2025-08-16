@@ -34,6 +34,13 @@
 					</VBox>
 			</Panel>
 
+		  <Panel headerText="Filtern nach Datum" width="auto" class="sapUiResponsiveMargin">
+				<VBox class="sapUiSmallMargin">
+					<DatePicker id="startDatePicker" placeholder="Startdatum" class="sapUiTinyMarginBegin"/>
+					<DatePicker id="endDatePicker" placeholder="Enddatum" class="sapUiTinyMarginBegin"/>
+					<Button text="Filtern" press="._onFilterByDate" class="sapUiTinyMarginBegin" />
+				</VBox>
+			</Panel>
 
 			<!-- Books List Table -->
       <Table

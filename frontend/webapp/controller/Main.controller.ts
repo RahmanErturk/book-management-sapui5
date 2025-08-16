@@ -6,6 +6,9 @@ import ColumnListItem from "sap/m/ColumnListItem";
 import Event from "sap/ui/base/Event";
 import Dialog from "sap/m/Dialog";
 import Fragment from "sap/ui/core/Fragment";
+import DatePicker from "sap/m/DatePicker";
+import Filter from "sap/ui/model/Filter";
+import ListBinding from "sap/ui/model/ListBinding";
 /**
  * @namespace buecherverwaltung.app.controller
  */
@@ -149,5 +152,40 @@ export default class Main extends BaseController {
 	public onCancelEdit(): void {
     this._editDialog?.close();
   }
+
+	public onFilterByDate(): void {
+		const startDate = (this.byId("startDatePicker") as DatePicker).getDateValue();
+		const endDate = (this.byId("endDatePicker") as DatePicker).getDateValue();
+
+		if (!startDate || !endDate) {
+			MessageToast.show("Bitte füllen Sie alle Felder aus.");
+			return;
+		}
+
+		void this.loadBooks(startDate, endDate);
+	}
+
+	public _onFilterByDate(): void {
+		const startDate = (this.byId("startDatePicker") as DatePicker).getDateValue();
+		const endDate = (this.byId("endDatePicker") as DatePicker).getDateValue();
+
+		if (!startDate || !endDate) {
+			MessageToast.show("Bitte füllen Sie alle Felder aus.");
+			return;
+		}
+
+		const table = this.byId("booksTable");
+		const binding = table.getBinding("items") as ListBinding;
+
+    const dateFilter = new Filter({
+			path: "createdAt",
+			test: (date: string) => {
+				const bookDate = new Date(date);
+				return bookDate >= startDate && bookDate <= endDate;
+			}	
+		});
+
+		binding?.filter([dateFilter]);
+	}
 
 }
