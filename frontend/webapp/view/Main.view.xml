@@ -12,16 +12,45 @@
 		title="{i18n>appTitle}"
 		id="page">
 		<content>
-     <Table
+
+			<!-- Book Creation Form -->
+			<Panel 
+				headerText="Neues Buch hinzufügen" 
+				expandable="true" 
+				expanded="false" 
+				width="auto"
+				class="sapUiResponsiveMargin">
+					<VBox class="sapUiSmallMargin">
+						<Label text="Titel" labelFor="titleInput"/>
+						<Input id="titleInput" placeholder="Buchtitel eingeben..." />
+
+						<Label text="Autor" labelFor="authorInput"/>
+						<Input id="authorInput" placeholder="Autor eingeben..." />
+
+						<Label text="Angelegt von" labelFor="createdByInput"/>
+						<Input id="createdByInput" placeholder="Ihren Namen eingeben..." />
+
+						<Button text="Buch hinzufügen" type="Emphasized" press="onAddBook" class="sapUiSmallMarginTop" />
+					</VBox>
+			</Panel>
+
+
+			<!-- Books List Table -->
+      <Table
         id="booksTable"
         items="{
           path: 'booksModel>/books'
-        }">
+        }"
+				width="auto"
+				class="sapUiResponsiveMargin">
         
         <headerToolbar>
           <Toolbar>
             <Title text="Bücherliste" level="H2"/>
-          </Toolbar>
+
+						<ToolbarSpacer />
+
+					</Toolbar>
         </headerToolbar>
 
         <columns>
@@ -29,6 +58,7 @@
           <Column><Text text="Autor" /></Column>
           <Column><Text text="Angelegt am" /></Column>
           <Column><Text text="Angelegt von" /></Column>
+
         </columns>
 
         <items>
@@ -38,6 +68,7 @@
               <Text text="{booksModel>author}" />
               <Text text="{path: 'booksModel>createdAt', formatter: 'formatter.formatDate'}" />
               <Text text="{booksModel>createdBy}" />
+
             </cells>
           </ColumnListItem>
         </items>
