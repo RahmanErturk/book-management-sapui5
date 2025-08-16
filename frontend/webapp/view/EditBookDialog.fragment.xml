@@ -1,0 +1,27 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog
+        id="editBookDialog"
+        title="Buch bearbeiten"
+        stretchOnPhone="true">
+
+        <VBox class="sapUiSmallMargin" width="auto">
+            <Label text="Titel" />
+            <Input id="editTitleInput" />
+
+            <Label text="Autor" />
+            <Input id="editAuthorInput" />
+
+            <Label text="Angelegt von" />
+            <Input id="editCreatedByInput" />
+        </VBox>
+
+        <beginButton>
+            <Button text="Speichern" type="Emphasized" press=".onSaveEditedBook" />
+        </beginButton>
+        <endButton>
+            <Button text="Abbrechen" press=".onCancelEdit" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -58,7 +58,8 @@
           <Column><Text text="Autor" /></Column>
           <Column><Text text="Angelegt am" /></Column>
           <Column><Text text="Angelegt von" /></Column>
-
+					<!-- Delete Column -->
+          <Column width="5rem"><Text text=""/></Column>
         </columns>
 
         <items>
@@ -68,7 +69,15 @@
               <Text text="{booksModel>author}" />
               <Text text="{path: 'booksModel>createdAt', formatter: 'formatter.formatDate'}" />
               <Text text="{booksModel>createdBy}" />
-
+							<HBox 
+								justifyContent="End"  
+								fitContainer="true"
+								class="sapUiSmallMarginRight">
+								<Button icon="sap-icon://edit"
+												tooltip="Bearbeiten"
+												type="Emphasized"
+												press=".onEditBook"/>
+							</HBox>
             </cells>
           </ColumnListItem>
         </items>
