@@ -14,8 +14,9 @@ export const getBooks = async (req: Request, res: Response): Promise<Response> =
     if (title) {
       filter.title = { $regex: title as string, $options: 'i' }; // Case-insensitive search
     }
+    
     if (date) {
-      const [start, end] = date.split(':').map(d => new Date(d));
+      const [start, end] = date.split('_').map(d => new Date(d));
       filter.createdAt = { $gte: start, $lte: end };
     }
     const books = await Book.find(filter);
