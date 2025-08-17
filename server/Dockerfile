@@ -14,12 +14,19 @@ RUN npm install
 COPY . .
 
 # 6. Build TypeScript files
-RUN npm run build
+# RUN npm run build
+
+# Install development tools for hot reloading
+RUN npm install -g nodemon ts-node-dev
 
 # 7. Expose the application port
 EXPOSE 3000
 
 # 8. Start the application
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
+
+# Use nodemon for development
+CMD ["npx", "ts-node-dev", "--respawn", "--transpile-only", "src/app.ts"]
+
 # 9. Seed the database (optional, can be run manually)
 # RUN npm run seed
