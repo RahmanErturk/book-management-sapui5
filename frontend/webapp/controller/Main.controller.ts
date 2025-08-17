@@ -9,6 +9,7 @@ import Fragment from "sap/ui/core/Fragment";
 import DatePicker from "sap/m/DatePicker";
 import Filter from "sap/ui/model/Filter";
 import ListBinding from "sap/ui/model/ListBinding";
+
 /**
  * @namespace buecherverwaltung.app.controller
  */
@@ -26,6 +27,10 @@ export default class Main extends BaseController {
 
 	public onInit(): void {
 		void this.loadBooks();
+
+		this.getRouter().getRoute("main")?.attachPatternMatched(() => {
+			void this.loadBooks();
+		}, this);
 	}
 
 	private async loadBooks(startDate?: Date, endDate?: Date): Promise<void> {
@@ -46,41 +51,6 @@ export default class Main extends BaseController {
     }
 	}
 
-	public onAddBook(): void {
-		const title = (this.byId("titleInput") as Input).getValue();
-		const author = (this.byId("authorInput") as Input).getValue();
-		const createdBy = (this.byId("createdByInput") as Input).getValue();
-
-		if (!title || !author || !createdBy) {
-			MessageToast.show("Bitte für alle Felder ausfüllen.");
-			return;
-		}
-
-		fetch("http://localhost:3000/api/books", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({ title, author, createdBy })
-		})
-		.then(res => {
-				if (!res.ok) throw new Error("Buch konnte nicht hinzugefügt werden");
-				return res.json();
-		})
-		.then(async () => {
-				MessageToast.show("Buch hinzugefügt!");
-				await this.loadBooks(); // Refresh the table
-				// Clear input fields
-				(this.byId("titleInput") as Input).setValue("");
-				(this.byId("authorInput") as Input).setValue("");
-				(this.byId("createdByInput") as Input).setValue("");
-		})
-		.catch(err => {
-				console.error(err);
-				MessageToast.show("Fehler beim Hinzufügen des Buches.");
-		});
-  }
-
 	private _editDialog: Dialog | null = null;
 	private _editingBookId: string | null = null;
 
@@ -99,14 +69,14 @@ export default class Main extends BaseController {
 
 		if (!this._editDialog) {
 			this._editDialog = (await Fragment.load({
-				id: this.getView().getId(), // ID prefix eklenir
+				id: this.getView().getId(), // Add ID prefix
 				name: "buecherverwaltung.app.view.EditBookDialog",
 				controller: this
 			})) as Dialog;
 			this.getView().addDependent(this._editDialog);
 		}
 
-		// Input'lara mevcut değerleri koy
+		// Set current values to Inputs
 		(this.byId("editTitleInput") as Input).setValue(bookData.title);
 		(this.byId("editAuthorInput") as Input).setValue(bookData.author);
 		(this.byId("editCreatedByInput") as Input).setValue(bookData.createdBy);
@@ -186,6 +156,10 @@ export default class Main extends BaseController {
 		});
 
 		binding?.filter([dateFilter]);
+	}
+
+	public onNavToAdd(): void {
+		this.getRouter().navTo("bookAdd");
 	}
 
 }

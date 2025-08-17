@@ -1,0 +1,22 @@
+<mvc:View
+  controllerName="buecherverwaltung.app.controller.BookAdd"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc">
+
+  <Page title="Neues Buch anlegen" showNavButton="true" navButtonPress=".onNavBack">
+    <content>
+      <VBox class="sapUiSmallMargin">
+        <Label text="Titel"/>
+        <Input id="titleInput" placeholder="Buchtitel eingeben..." />
+
+        <Label text="Autor"/>
+        <Input id="authorInput" placeholder="Autor eingeben..." />
+
+        <Label text="Angelegt von"/>
+        <Input id="createdByInput" placeholder="Ihren Namen eingeben..." />
+
+        <Button text="Speichern" type="Emphasized" press=".onAddBook" class="sapUiSmallMarginTop"/>
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

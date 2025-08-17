@@ -13,27 +13,6 @@
 		id="page">
 		<content>
 
-			<!-- Book Creation Form -->
-			<Panel 
-				headerText="Neues Buch hinzufügen" 
-				expandable="true" 
-				expanded="false" 
-				width="auto"
-				class="sapUiResponsiveMargin">
-					<VBox class="sapUiSmallMargin">
-						<Label text="Titel" labelFor="titleInput"/>
-						<Input id="titleInput" placeholder="Buchtitel eingeben..." />
-
-						<Label text="Autor" labelFor="authorInput"/>
-						<Input id="authorInput" placeholder="Autor eingeben..." />
-
-						<Label text="Angelegt von" labelFor="createdByInput"/>
-						<Input id="createdByInput" placeholder="Ihren Namen eingeben..." />
-
-						<Button text="Buch hinzufügen" type="Emphasized" press="onAddBook" class="sapUiSmallMarginTop" />
-					</VBox>
-			</Panel>
-
 		  <Panel headerText="Filtern nach Datum" width="auto" class="sapUiResponsiveMargin">
 				<VBox class="sapUiSmallMargin">
 					<DatePicker id="startDatePicker" placeholder="Startdatum" class="sapUiTinyMarginBegin"/>
@@ -56,6 +35,12 @@
             <Title text="Bücherliste" level="H2"/>
 
 						<ToolbarSpacer />
+						
+						<Button
+							text="Neues Buch hinzufügen"
+							type="Emphasized"
+							icon="sap-icon://add"
+							press=".onNavToAdd" />
 
 					</Toolbar>
         </headerToolbar>
@@ -66,7 +51,7 @@
           <Column><Text text="Angelegt am" /></Column>
           <Column><Text text="Angelegt von" /></Column>
 					<!-- Delete Column -->
-          <Column width="5rem"><Text text=""/></Column>
+          <Column width="10rem"><Text text=""/></Column>
         </columns>
 
         <items>

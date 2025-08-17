@@ -76,12 +76,21 @@
 					"pattern": "",
 					"name": "main",
 					"target": "main"
+				},
+				{
+					"pattern": "add",
+					"name": "bookAdd",
+					"target": "bookAdd"
 				}
 			],
 			"targets": {
 				"main": {
 					"viewId": "main",
 					"viewName": "Main"
+				},
+				"bookAdd": {
+					"viewId": "bookAdd",
+					"viewName": "BookAdd"
 				}
 			}
 		}
